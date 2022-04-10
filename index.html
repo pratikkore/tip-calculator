@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Tip Calculator</title>
+</head>
+
+<body style="border: solid;border-width: 9px;width: 410PX;height: 250px;">
+    <div id="wrapper"  style="text-align: center;">
+        <header>
+            <h1>Tip Calculator</h1>
+        </header>
+        <form action="javascript:void(calc())">
+            $<input id="bill" type="number"  style="margin-bottom: 12px;border: groove;;width: 380px;background-color: whitesmoke;">
+
+
+            <div> tip:<input onchange="onPerChnge(event)" type="range" id="inputPer" value="0" name="inputPerc" min="0"
+                    max="100"  style="margin-bottom: 12px;background-color: whitesmoke;">
+                <label id="percent" for="inputPerc" style="margin-bottom: 12px ;background-color: whitesmoke;border:groove"> 0 %</label>
+            </div>
+
+            <div style="border-bottom: 2px;"></div>
+            <input type="submit" value="Result"  style="margin-bottom: 12px">
+
+            <div  style="margin-bottom: 12px;border: groove;;width: 390px;text-align: left; margin-left: 8px;background-color: whitesmoke;"> Tip Amount: <span id="tip"></span>  </div>
+
+            <div  style="margin-bottom: 12px;border:groove;;width: 390px;text-align: left;margin-left: 8px;background-color: whitesmoke;">Total Bill With Tip: <span id="total"></span></div>
+        </form>
+    </div>
+    <script>
+        var per = 0;
+        function onPerChnge(e) {
+            per = Number(e.target.value);
+            document.getElementById("percent").innerHTML = per + " %";
+
+        }
+        function calc() {
+            var bill = Number(document.getElementById('bill').value);
+
+            var tip = bill * (Number(per) / 100);
+            var total_bill = bill + tip;
+
+            document.getElementById("tip").innerHTML = "$" + Number(tip).toFixed(2);
+            document.getElementById("total").innerHTML = "$" + Number(total_bill).toFixed(2);
+        }
+    </script>
+</body>
